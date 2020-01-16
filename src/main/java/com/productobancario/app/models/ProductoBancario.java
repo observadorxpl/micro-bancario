@@ -26,16 +26,13 @@ public class ProductoBancario {
 	
 	@NotEmpty
 	private Integer codigoProducto;
-	
-	private String tipoProductoBancario;
-	@Valid
+		@Valid
 	private TipoProducto tipoProducto;
-	public ProductoBancario(@NotEmpty String descripcion, @Valid TipoProducto tipoProducto ,@NotEmpty Integer codigoProducto, String tipoProductoBancario) {
+	public ProductoBancario(@NotEmpty String descripcion, @Valid TipoProducto tipoProducto ,@NotEmpty Integer codigoProducto) {
 		super();
 		this.descripcion = descripcion;
 		this.tipoProducto = tipoProducto;
 		this.codigoProducto = codigoProducto;
-		this.tipoProductoBancario = tipoProductoBancario;
 	}
 
 
