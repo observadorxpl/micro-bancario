@@ -37,9 +37,15 @@ public class ProductosBancarioMsApplication implements CommandLineRunner{
 		Flux.just(tipP1)
 		.flatMap(tipP -> tipoProductoRepo.save(tipP))
 		.thenMany(
-				Flux.just(new ProductoBancario("Cuenta Ahorro bancaria ScotiaBank PERU", tipP1, 1),
-						new ProductoBancario("Cuenta Corriente bancaria BCP ScotiaBank PERU", tipP1, 2),
-						new ProductoBancario("Cuenta a Plazo Fijo bancaria BCP ScotiaBank PERU", tipP1,3)
+				Flux.just(
+						new ProductoBancario("Cuenta Ahorro bancaria", 10, 5, tipP1, 0.05, 1),
+						new ProductoBancario("Cuenta Corriente bancaria", 9, 3, tipP1, 0.25, 2),
+						new ProductoBancario("Cuenta a Plazo Fijo bancaria", 8, 5, tipP1, 0.15, 3),
+						new ProductoBancario("Cuenta ahorro personal VIP", 7, 5, tipP1, 0.04, 4),
+						new ProductoBancario("Cuenta corriente personal VIP", 6, 2, tipP1, 0.03, 5),
+						new ProductoBancario("Empresarial PYME", 11, 10, tipP1, 0.09, 6),
+						new ProductoBancario("Empresarial Corporative", 4, 5, tipP1, 0.08, 7),
+						new ProductoBancario("Cuenta plazo fijo VIP", 3, 1, tipP1, 0.075, 8)
 						)
 				).flatMap(pro -> productoRepo.save(pro))
 		.subscribe(res -> System.out.println("Producto".concat(res.toString().concat(" " + "Registrado"))));
