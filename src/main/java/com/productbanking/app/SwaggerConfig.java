@@ -1,4 +1,4 @@
-package com.productobancario.app;
+package com.productbanking.app;
 
 
 import java.util.ArrayList;

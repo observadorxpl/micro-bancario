@@ -1,4 +1,4 @@
-package com.productobancario.app.models;
+package com.productbanking.app.models;
 
 import javax.validation.constraints.NotEmpty;
 
@@ -14,18 +14,19 @@ import lombok.ToString;
 @Document
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter @Setter
+@Getter
+@Setter
 @ToString
-public class TipoProducto {
+public class BankingProductType {
 	@Id
-	private String idTipoProducto;
+	private String idProductType;
 
 	@NotEmpty
-	private String descripcion;
+	private String description;
 
-	public TipoProducto(@NotEmpty String descripcion) {
+	public BankingProductType(@NotEmpty String description) {
 		super();
-		this.descripcion = descripcion;
+		this.description = description;
 	}
-	
+
 }

@@ -1,4 +1,4 @@
-package com.productobancario.app.expose;
+package com.productbanking.app.expose;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -10,40 +10,40 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.productobancario.app.business.ITipoProductoService;
-import com.productobancario.app.models.TipoProducto;
+import com.productbanking.app.business.IBankingProductTypeService;
+import com.productbanking.app.models.BankingProductType;
 
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @RestController
-@RequestMapping("/tipoProductos")
-public class TipoProductoRestController {
+@RequestMapping("/products-type")
+public class BankingProductTypeController {
 	@Autowired
-	private ITipoProductoService tipoProductoService;
+	private IBankingProductTypeService tipoProductoService;
 
 	@GetMapping
-	public Flux<TipoProducto> listarAllClientes() {
+	public Flux<BankingProductType> findAllProductsType() {
 		return tipoProductoService.findAll();
 	}
 
 	@GetMapping("/{id}")
-	public Mono<TipoProducto> buscarCliente(@PathVariable String id) {
+	public Mono<BankingProductType> findProductType(@PathVariable String id) {
 		return tipoProductoService.finById(id);
 	}
 
 	@PostMapping
-	public Mono<TipoProducto> registrarCliente(@RequestBody TipoProducto tipoProducto) {
-		return tipoProductoService.save(tipoProducto);
+	public Mono<BankingProductType> saveProductType(@RequestBody BankingProductType productType) {
+		return tipoProductoService.save(productType);
 	}
 
 	@PutMapping
-	public Mono<TipoProducto> actualizarCliente(@RequestBody TipoProducto tipoProducto) {
-		return tipoProductoService.save(tipoProducto);
+	public Mono<BankingProductType> updateProductType(@RequestBody BankingProductType productType) {
+		return tipoProductoService.save(productType);
 	}
 
 	@DeleteMapping("/{id}")
-	public Mono<Void> eliminarCliente(@PathVariable String id){
+	public Mono<Void> deleteProductType(@PathVariable String id){
 		return tipoProductoService.deleteById(id);
 	}
 }
