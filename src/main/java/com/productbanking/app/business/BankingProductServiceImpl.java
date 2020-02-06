@@ -48,7 +48,7 @@ public class BankingProductServiceImpl implements IBankingProductService {
 	}
 
 	@Override
-	public Flux<BankingProduct> buscarPorCodigoBanco(String idBank) {
+	public Flux<BankingProduct> buscarPorIdBanco(String idBank) {
 		return WebClient.builder().baseUrl("http://" + gatewayUrlPort + "/micro-banco/bank/").build().get().uri(idBank)
 				.retrieve().bodyToMono(Bank.class).log().flatMapMany(bank -> {
 					return bankingProductRepo.findByBank(bank);
@@ -59,5 +59,11 @@ public class BankingProductServiceImpl implements IBankingProductService {
 	public Flux<BankingProduct> reporteCompletoYGeneral(ConsultaReporteDTO dto) {
 		System.out.println("[DTO reporte]: "+ dto);
 		return bankingProductRepo.buscarPorRangoFechas(dto.getRangoInicio(), dto.getRangoFin());
+	}
+
+
+	@Override
+	public Flux<BankingProduct> buscarPorCodigoBanco(Integer codeBank) {
+		return bankingProductRepo.buscarPorCodigoBanco(codeBank);
 	}
 }

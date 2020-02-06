@@ -35,9 +35,14 @@ public class BankingProductController {
 	@GetMapping("/bank/{idBank}")
 	@ApiOperation(value = "Find products", notes="Find all products by id Bank")
 	public Flux<BankingProduct> findAllProductsByIdBank(@PathVariable String idBank) {
-		return productService.buscarPorCodigoBanco(idBank);
+		return productService.buscarPorIdBanco(idBank);
 	}
 	
+	@GetMapping("/code-bank/{codebank}")
+	@ApiOperation(value = "Find products", notes="Find all products by id Bank")
+	public Flux<BankingProduct> findAllProductsByIdBank(@PathVariable Integer codebank) {
+		return productService.buscarPorCodigoBanco(codebank);
+	}
 	@GetMapping("/{id}")
 	@ApiOperation(value = "Find a product", notes="Find product by id")
 	public Mono<BankingProduct> findProduct(@PathVariable String id) {

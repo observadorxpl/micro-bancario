@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.data.mongodb.core.ReactiveMongoTemplate;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -18,6 +19,7 @@ import com.productbanking.app.repository.IBankingProductRepository;
 import com.productbanking.app.repository.IBankingProductTypeRepository;
 
 import reactor.core.publisher.Flux;
+@EnableCircuitBreaker
 @EnableEurekaClient
 @SpringBootApplication
 public class ProductosBancarioMsApplication implements CommandLineRunner{
@@ -38,6 +40,7 @@ public class ProductosBancarioMsApplication implements CommandLineRunner{
 
 	@Override
 	public void run(String... args) throws Exception {
+		/*
 		template.dropCollection(BankingProduct.class).subscribe();
 		template.dropCollection(BankingProductType.class).subscribe();
 		// REGISTRO DE TIPO DE PRODUCTOS Y PRODUCTOS
@@ -122,7 +125,7 @@ public class ProductosBancarioMsApplication implements CommandLineRunner{
 			return productRepo
 					.save(new BankingProduct("Cuenta plazo fijo VIP", 3, 1, tipP1, 0.075, 8, pro.getBank(), new Date()));
 		}).subscribe();
-		/*
+		
 		.thenMany(
 				Flux.just(
 						new BankingProduct("Cuenta Ahorro bancaria", 10, 5, tipP1, 0.05, 1),
